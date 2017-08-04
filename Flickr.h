@@ -42,7 +42,7 @@ class ANNOTATORLIB_API Flickr : public AbstractImageSet {
 
   virtual std::string getImagePath(unsigned long /* frame */) override;
 
-  virtual bool gotoPosition(unsigned long /* position */) override;
+  virtual bool gotoPosition(unsigned long position) override;
 
   virtual long getPosition() override;
 

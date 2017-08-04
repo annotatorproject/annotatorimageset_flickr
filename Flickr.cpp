@@ -53,24 +53,22 @@ Image Flickr::getImage(unsigned long position) {
 
 std::string Flickr::getImagePath(unsigned long) { return ""; }
 
-bool Flickr::gotoPosition(unsigned long) {
-  if (urls.size() < position) return false;
+bool Flickr::gotoPosition(unsigned long position) {
+  if (urls.size() <= position) return false;
   this->position = position;
   return true;
 }
 
 long Flickr::getPosition() { return position; }
 
-bool Flickr::hasNext() {
-  if (urls.size() < position) return false;
-  this->position = position;
-  return true;
-}
+bool Flickr::hasNext() { return position + 1 < urls.size(); }
 
 Image Flickr::next() {
   Image img;
-  img = getImage(position);
-  position++;
+  if (hasNext()) {
+    img = getImage(position);
+    position++;
+  }
   return img;
 }
 

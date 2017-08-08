@@ -36,7 +36,16 @@ namespace AnnotatorLib {
 namespace ImageSet {
 
 Flickr::Flickr(std::string path) {
-  this->path = path;
+  std::string prefix = "https://";
+  if (!std::equal(prefix.begin(), prefix.end(), path.begin())) {
+    this->path =
+        "https://api.flickr.com/services/rest/"
+        "?method=flickr.photos.search&api_key=3f2473a4aa48d3a7376136d347fab3db&"
+        "per_page=100&format=json&nojsoncallback=1&text=" +
+        path;
+  } else {
+    this->path = path;
+  }
   initFlickr();
 }
 
